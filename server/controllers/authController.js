@@ -1,4 +1,5 @@
 const User = require("../db/models/User");
+const AuthenticationError = require("../errors/AuthenticationError");
 const NotFoundError = require("../errors/NotFoundError");
 
 const loginUser = async (req, res) => {
@@ -6,10 +7,10 @@ const loginUser = async (req, res) => {
 
 	const user = await User.findOne({ email });
 
+	if (!user) throw new AuthenticationError("Email not found");
+
 	const isPasswordCorrect = await user.checkPassword(password);
-	if (!isPasswordCorrect) {
-		return res.status(400).json({ msg: "Password Incorrect" });
-	}
+	if (!isPasswordCorrect) throw new AuthenticationError("Credentials are incorrect");
 	res.status(200).json(user);
 };
 
