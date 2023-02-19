@@ -1,3 +1,6 @@
+const { StatusCodes } = require("http-status-codes");
+const Job = require("../db/models/Job");
+
 const getAllJobs = async (req, res) => {
 	console.log(req.user);
 	res.send("Get all jobs");
@@ -8,7 +11,8 @@ const getJob = async (req, res) => {
 };
 
 const createJob = async (req, res) => {
-	res.send("Create job");
+	const job = await Job.create({ ...req.body, createdBy: req.user.userId });
+	res.status(StatusCodes.OK).json(job);
 };
 
 const updateJob = async (req, res) => {
