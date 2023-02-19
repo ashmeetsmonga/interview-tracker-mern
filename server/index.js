@@ -6,12 +6,14 @@ const express = require("express");
 const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 const notFoundMiddleware = require("./middleware/notFoundMiddleware");
 const authRouter = require("./routes/authRoute");
+const jobRouter = require("./routes/jobRoute");
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/auth", authRouter);
+app.use("/job", jobRouter);
 
 //errors middleware
 app.use(errorHandlerMiddleware);
