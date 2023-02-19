@@ -3,6 +3,7 @@ require("./db/connectDB");
 require("express-async-errors");
 
 const express = require("express");
+const authMiddleware = require("./middleware/authMiddleware");
 const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 const notFoundMiddleware = require("./middleware/notFoundMiddleware");
 const authRouter = require("./routes/authRoute");
@@ -13,7 +14,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/auth", authRouter);
-app.use("/job", jobRouter);
+app.use("/job", authMiddleware, jobRouter);
 
 //errors middleware
 app.use(errorHandlerMiddleware);
