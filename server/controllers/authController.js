@@ -1,4 +1,5 @@
 const User = require("../db/models/User");
+const NotFoundError = require("../errors/NotFoundError");
 
 const loginUser = async (req, res) => {
 	const { email, password } = req.body;

@@ -3,6 +3,7 @@ require("./db/connectDB");
 require("express-async-errors");
 
 const express = require("express");
+const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 const notFoundMiddleware = require("./middleware/notFoundMiddleware");
 const authRouter = require("./routes/authRoute");
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/auth", authRouter);
 
 //errors middleware
+app.use(errorHandlerMiddleware);
 app.use(notFoundMiddleware);
 
 const PORT = process.env.PORT || 6000;
