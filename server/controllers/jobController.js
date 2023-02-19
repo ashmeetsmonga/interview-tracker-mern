@@ -1,5 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const Job = require("../db/models/Job");
+const BadRequestError = require("../errors/BadRequestError");
 
 const getAllJobs = async (req, res) => {
 	console.log(req.user);
@@ -11,6 +12,11 @@ const getJob = async (req, res) => {
 };
 
 const createJob = async (req, res) => {
+	const { company, position, status } = req.body;
+
+	if (!company || !position || !status)
+		throw new BadRequestError("Provide Company, position and status");
+
 	const job = await Job.create({ ...req.body, createdBy: req.user.userId });
 	res.status(StatusCodes.OK).json(job);
 };
