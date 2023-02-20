@@ -3,6 +3,7 @@ require("./db/connectDB");
 require("express-async-errors");
 
 const express = require("express");
+const cors = require("cors");
 const authMiddleware = require("./middleware/authMiddleware");
 const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 const notFoundMiddleware = require("./middleware/notFoundMiddleware");
@@ -11,6 +12,7 @@ const jobRouter = require("./routes/jobRoute");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/auth", authRouter);

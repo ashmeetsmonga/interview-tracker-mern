@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Login = () => {
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
-	const loginUser = () => {};
+	const loginUser = async (e) => {
+		e.preventDefault();
+		try {
+			const data = await axios.post("http://localhost:5000/auth/login", { email, password });
+			console.log(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
 		<div className='w-1/3 bg-gray-800 rounded-lg flex flex-col gap-8 items-center p-8'>
