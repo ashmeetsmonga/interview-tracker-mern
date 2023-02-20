@@ -24,6 +24,7 @@ const Login = () => {
 				<input
 					type='text'
 					placeholder='email'
+					required={true}
 					className='w-full bg-gray-100 text-center p-2 text-xl tracking-widest rounded-md outline-none focus:outline-none'
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
@@ -31,6 +32,7 @@ const Login = () => {
 				<input
 					type='text'
 					placeholder='password'
+					required={true}
 					className='w-full bg-gray-100 text-center p-2 text-xl tracking-widest rounded-md outline-none focus:outline-none'
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
