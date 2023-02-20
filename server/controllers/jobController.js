@@ -22,7 +22,17 @@ const createJob = async (req, res) => {
 };
 
 const updateJob = async (req, res) => {
-	res.send("Update jobs");
+	const { company, position, status } = req.body;
+
+	if (!company || !position || !status)
+		throw new BadRequestError("Provide Company, position and status");
+
+	const { jobId } = req.params;
+	const job = await Job.findOneAndUpdate({ _id: jobId, createdBy: req.user.userId }, req.body, {
+		new: true,
+		runValidators: true,
+	});
+	res.status(StatusCodes.OK).json(job);
 };
 
 const deleteJob = async (req, res) => {
