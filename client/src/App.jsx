@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
-		<div>
-			<h1 className='font-bold'>Hello There</h1>
+		<div className='w-screen h-screen flex justify-center items-center'>
+			<Routes>
+				<Route path='/login' element={<Login />} />
+			</Routes>
 		</div>
 	);
 }
