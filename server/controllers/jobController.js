@@ -36,7 +36,9 @@ const updateJob = async (req, res) => {
 };
 
 const deleteJob = async (req, res) => {
-	res.send("Delete jobs");
+	const { jobId } = req.params;
+	const job = await Job.findOneAndDelete({ _id: jobId, createdBy: req.user.userId });
+	res.status(StatusCodes.OK).json({ msg: `Job with id ${jobId} deleted successfully` });
 };
 
 module.exports = { getAllJobs, getJob, createJob, updateJob, deleteJob };
