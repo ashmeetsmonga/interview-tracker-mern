@@ -2,7 +2,7 @@ import React from "react";
 
 const Job = ({ data }) => {
 	return (
-		<div className='w-1/4 bg-gray-50 flex flex-col gap-2 rounded-sm shadow-2xl'>
+		<div className='bg-gray-50 flex flex-col gap-2 rounded-sm shadow-2xl'>
 			<div
 				className={`${
 					data.status.toLowerCase() === "cleared" ? "bg-green-800" : "bg-gray-800"

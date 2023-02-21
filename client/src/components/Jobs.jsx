@@ -8,7 +8,7 @@ const Jobs = () => {
 	console.log(data);
 
 	return (
-		<div className='w-full h-full p-[10rem] flex gap-8 flex-wrap items-start'>
+		<div className='w-full grid grid-cols-4 gap-8 p-16'>
 			{data?.map((job) => (
 				<Job key={job._id} data={job} />
 			))}
