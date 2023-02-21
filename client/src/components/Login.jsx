@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const navigate = useNavigate();
 
 	const loginUser = async (e) => {
 		e.preventDefault();
@@ -12,6 +14,7 @@ const Login = () => {
 			const { data } = await axios.post("http://localhost:5000/auth/login", { email, password });
 			localStorage.setItem("interview-tracker-name", data.name);
 			localStorage.setItem("interview-tracker-token", data.token);
+			navigate("/jobs");
 		} catch (err) {
 			console.log(err);
 		}

@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
+import Jobs from "./components/Jobs";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import RequireAuth from "./components/RequireAuth";
 
 function App() {
 	return (
@@ -8,6 +10,14 @@ function App() {
 			<Routes>
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
+				<Route
+					path='/jobs'
+					element={
+						<RequireAuth>
+							<Jobs />
+						</RequireAuth>
+					}
+				/>
 			</Routes>
 		</div>
 	);
