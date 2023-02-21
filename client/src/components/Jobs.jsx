@@ -6,8 +6,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 const Jobs = () => {
 	const { data, isLoading, error } = useGetAllJobs();
 
-	console.log(data);
-
 	return (
 		<div className='w-full grid grid-cols-4 gap-8 p-16'>
 			{data?.map((job) => (

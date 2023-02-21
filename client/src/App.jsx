@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import CreateNewJob from "./components/CreateNewJob";
 import Jobs from "./components/Jobs";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -15,6 +16,14 @@ function App() {
 					element={
 						<RequireAuth>
 							<Jobs />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path='/create-new-job'
+					element={
+						<RequireAuth>
+							<CreateNewJob />
 						</RequireAuth>
 					}
 				/>
