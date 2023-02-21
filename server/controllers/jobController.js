@@ -13,7 +13,7 @@ const getJob = async (req, res) => {
 
 const createJob = async (req, res) => {
 	const { company, position, status } = req.body;
-
+	console.log(req.body);
 	if (!company || !position || !status)
 		throw new BadRequestError("Provide Company, position and status");
 

@@ -1,15 +1,28 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { usePostJob } from "../queryHooks/usePostJob";
 
 const CreateNewJob = () => {
 	const [company, setCompany] = useState("");
 	const [position, setPosition] = useState("");
 	const [status, setStatus] = useState("");
 
+	const navigate = useNavigate();
+
+	const { mutate: addNewJobMutation } = usePostJob();
+
 	return (
 		<div className='w-full h-full flex justify-center items-center'>
 			<div className='w-1/2 bg-gray-800 rounded-lg flex flex-col gap-8 items-center p-8'>
 				<p className='text-5xl text-gray-100 font-bold uppercase tracking-widest'>Create New Job</p>
-				<form className='w-4/5 flex flex-col items-center gap-6'>
+				<form
+					className='w-4/5 flex flex-col items-center gap-6'
+					onSubmit={(e) => {
+						e.preventDefault();
+						addNewJobMutation({ company, position, status });
+						navigate(-1);
+					}}
+				>
 					<input
 						type='text'
 						placeholder='Company'
