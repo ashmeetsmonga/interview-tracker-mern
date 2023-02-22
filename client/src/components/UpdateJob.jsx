@@ -54,12 +54,20 @@ const UpdateJob = () => {
 						value={status}
 						onChange={(e) => setStatus(e.target.value)}
 					/>
-					<button
-						className='text-gray-100 p-2 mt-2 rounded-md font-bold text-2xl tracking-wider uppercase'
-						type='submit'
-					>
-						Submit
-					</button>
+					<div className='flex gap-8'>
+						<button
+							className='text-gray-100 p-2 mt-2 rounded-md font-bold text-2xl tracking-wider uppercase'
+							type='submit'
+						>
+							Submit
+						</button>
+						<button
+							className='text-gray-100 p-2 mt-2 rounded-md font-bold text-2xl tracking-wider uppercase'
+							onClick={() => navigate("/jobs")}
+						>
+							Back
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>
