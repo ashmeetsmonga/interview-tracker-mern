@@ -1,4 +1,5 @@
 import React from "react";
+import { AiFillDelete } from "react-icons/ai";
 
 const Job = ({ data }) => {
 	return (
@@ -6,9 +7,12 @@ const Job = ({ data }) => {
 			<div
 				className={`${
 					data.status.toLowerCase() === "cleared" ? "bg-green-800" : "bg-gray-800"
-				} text-gray-100 font-semibold rounded-t-sm text-2xl tracking-widest p-4`}
+				} text-gray-100 w-full flex justify-between items-center font-semibold rounded-t-sm text-2xl tracking-widest p-4`}
 			>
-				{data.company}
+				<div>{data.company}</div>
+				<div>
+					<AiFillDelete />
+				</div>
 			</div>
 			<div className='flex flex-col gap-2 p-4'>
 				<div className='text-xl tracking-wider'>
