@@ -20,7 +20,7 @@ const CreateNewJob = () => {
 					onSubmit={(e) => {
 						e.preventDefault();
 						addNewJobMutation({ company, position, status });
-						navigate("/jobs");
+						navigate(-1);
 					}}
 				>
 					<input

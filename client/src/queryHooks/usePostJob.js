@@ -1,7 +1,8 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 
 export const usePostJob = () => {
+	const queryClient = useQueryClient();
 	return useMutation(
 		async ({ company, position, status }) => {
 			const { data } = await axios.post(
@@ -21,7 +22,7 @@ export const usePostJob = () => {
 		},
 		{
 			onSettled: (data) => {
-				console.log(data);
+				queryClient.refetchQueries("jobs");
 			},
 		}
 	);

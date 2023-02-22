@@ -7,7 +7,7 @@ import RequireAuth from "./components/RequireAuth";
 
 function App() {
 	return (
-		<div className='w-screen h-screen bg-gray-100 flex justify-center items-center'>
+		<div className='w-screen h-screen overflow-x-hidden bg-gray-100 flex justify-center items-center'>
 			<Routes>
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
