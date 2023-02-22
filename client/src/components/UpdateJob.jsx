@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetJob } from "../queryHooks/useGetJob";
+import { useUpdateJob } from "../queryHooks/useUpdateJob";
 
 const UpdateJob = () => {
 	const { jobId } = useParams();
@@ -12,6 +13,7 @@ const UpdateJob = () => {
 	const navigate = useNavigate();
 
 	const { data, isLoading } = useGetJob({ jobId });
+	const { mutate: updateJobMutation } = useUpdateJob(jobId);
 
 	useEffect(() => {
 		setCompany(data?.company || "");
@@ -27,7 +29,8 @@ const UpdateJob = () => {
 					className='w-4/5 flex flex-col items-center gap-6'
 					onSubmit={(e) => {
 						e.preventDefault();
-						navigate(-1);
+						updateJobMutation({ company, position, status });
+						navigate("/jobs");
 					}}
 				>
 					<input
