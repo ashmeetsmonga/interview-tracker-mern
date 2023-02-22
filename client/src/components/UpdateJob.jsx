@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { usePostJob } from "../queryHooks/usePostJob";
+import { useGetJob } from "../queryHooks/useGetJob";
 
 const UpdateJob = () => {
 	const [company, setCompany] = useState("");
@@ -9,17 +10,24 @@ const UpdateJob = () => {
 
 	const navigate = useNavigate();
 
-	const { mutate: addNewJobMutation } = usePostJob();
+	const { data, isLoading } = useGetJob();
+
+	console.log(data);
+
+	useEffect(() => {
+		setCompany(data?.company || "");
+		setPosition(data?.position || "");
+		setStatus(data?.status || "");
+	}, [data]);
 
 	return (
 		<div className='w-full h-full flex justify-center items-center'>
 			<div className='w-1/2 bg-gray-800 rounded-lg flex flex-col gap-8 items-center p-8'>
-				<p className='text-5xl text-gray-100 font-bold uppercase tracking-widest'>Create New Job</p>
+				<p className='text-5xl text-gray-100 font-bold uppercase tracking-widest'>Update Job</p>
 				<form
 					className='w-4/5 flex flex-col items-center gap-6'
 					onSubmit={(e) => {
 						e.preventDefault();
-						addNewJobMutation({ company, position, status });
 						navigate(-1);
 					}}
 				>
