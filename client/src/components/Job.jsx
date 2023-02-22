@@ -1,7 +1,10 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { useDeleteJob } from "../queryHooks/useDeleteJob";
 
 const Job = ({ data }) => {
+	const { mutate: deleteJobMutation } = useDeleteJob();
+	const { _id: jobId } = data;
 	return (
 		<div className='bg-gray-50 flex flex-col gap-2 rounded-sm shadow-2xl'>
 			<div
@@ -10,9 +13,9 @@ const Job = ({ data }) => {
 				} text-gray-100 w-full flex justify-between items-center font-semibold rounded-t-sm text-2xl tracking-widest p-4`}
 			>
 				<div>{data.company}</div>
-				<div>
+				<button onClick={() => deleteJobMutation({ jobId })}>
 					<AiFillDelete />
-				</div>
+				</button>
 			</div>
 			<div className='flex flex-col gap-2 p-4'>
 				<div className='text-xl tracking-wider'>
