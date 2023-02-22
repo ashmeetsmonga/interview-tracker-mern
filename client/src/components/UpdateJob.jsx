@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetJob } from "../queryHooks/useGetJob";
 
 const UpdateJob = () => {
+	const { jobId } = useParams();
 	const [company, setCompany] = useState("");
 	const [position, setPosition] = useState("");
 	const [status, setStatus] = useState("");
 
 	const navigate = useNavigate();
 
-	const { data, isLoading } = useGetJob();
-
-	console.log(data);
+	const { data, isLoading } = useGetJob({ jobId });
 
 	useEffect(() => {
 		setCompany(data?.company || "");
