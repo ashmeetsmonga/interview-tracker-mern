@@ -4,6 +4,7 @@ import Jobs from "./components/Jobs";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import RequireAuth from "./components/RequireAuth";
+import UpdateJob from "./components/UpdateJob";
 
 function App() {
 	return (
@@ -24,6 +25,14 @@ function App() {
 					element={
 						<RequireAuth>
 							<CreateNewJob />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path='/update-job/:jobId'
+					element={
+						<RequireAuth>
+							<UpdateJob />
 						</RequireAuth>
 					}
 				/>

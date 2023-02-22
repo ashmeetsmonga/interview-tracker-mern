@@ -1,8 +1,10 @@
 import React from "react";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { useDeleteJob } from "../queryHooks/useDeleteJob";
 
 const Job = ({ data }) => {
+	const navigate = useNavigate();
 	const { mutate: deleteJobMutation } = useDeleteJob();
 	const { _id: jobId } = data;
 	return (
@@ -13,9 +15,14 @@ const Job = ({ data }) => {
 				} text-gray-100 w-full flex justify-between items-center font-semibold rounded-t-sm text-2xl tracking-widest p-4`}
 			>
 				<div>{data.company}</div>
-				<button onClick={() => deleteJobMutation({ jobId })}>
-					<AiFillDelete />
-				</button>
+				<div className='flex gap-4'>
+					<button onClick={() => navigate(`/update-job/${jobId}`)}>
+						<AiFillEdit />
+					</button>
+					<button onClick={() => deleteJobMutation({ jobId })}>
+						<AiFillDelete />
+					</button>
+				</div>
 			</div>
 			<div className='flex flex-col gap-2 p-4'>
 				<div className='text-xl tracking-wider'>
